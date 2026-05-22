@@ -3,7 +3,7 @@ public class BankAccount {
     private String ownerName;
     private double balance;
 
-    BankAccount(String accountNumber, String ownerName) {
+    public BankAccount(String accountNumber, String ownerName) {
         this.accountNumber = accountNumber;
         this.ownerName = ownerName;
         this.balance = 0.0;
@@ -12,13 +12,9 @@ public class BankAccount {
     public void deposit(double amount) {
         if(amount > 0) {
             this.balance += amount;
-            System.out.println("Successfully deposited " + amount + " tg!");
-        }
-        else if(amount < 0) {
-            System.out.println("Error: insufficient funds!");
         }
         else{
-            System.out.println("Error type");
+            throw new IllegalArgumentException("Incorrect type of deposit!");
         }
     }
 
@@ -26,14 +22,13 @@ public class BankAccount {
         if(amount > 0) {
             if(amount <= this.balance) {
                 this.balance -= amount;
-                System.out.println("Successfully withdraw " + amount + " tg!");
             }
             else {
-                System.out.println("Error: insufficient funds!");
+                throw new IllegalArgumentException("Not enough balance!");
             }
         }
         else{
-            System.out.println("Error: type correct number of amount");
+            throw new IllegalArgumentException("Incorrect type of amount");
         }
     }
 
