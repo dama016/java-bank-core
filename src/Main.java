@@ -1,10 +1,20 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        BankAccount acc1 = new BankAccount("KZ123456", "Damir");
+        BankService bankService = new BankService();
 
-        acc1.deposit(5000);
-        acc1.withdraw(2000);
-        acc1.withdraw(10000);
-        System.out.println(acc1.getBalance());
+        bankService.addAccount(new BankAccount("KZ0001", "Almas"));
+        bankService.addAccount(new BankAccount("KZ0002", "Dias"));
+
+        try {
+            bankService.findAccount("KZ0001").deposit(10000);
+            bankService.transfer("KZ0001", "HUI-200", 3000);
+        }catch(IllegalArgumentException e){
+            System.out.println("Error on transfer: " +  e.getMessage());
+        }
+        System.out.println(bankService.findAccount("KZ0001").getBalance());
+        System.out.println(bankService.findAccount("KZ0002").getBalance());
     }
 }

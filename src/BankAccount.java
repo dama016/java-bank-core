@@ -35,5 +35,12 @@ public class BankAccount {
     public double getBalance(){
         return this.balance;
     }
+    public String getAccountNumber(){
+        return this.accountNumber;
+    }
+
+    public String getOwnerName(){
+        return this.ownerName;
+    }
 
 }
